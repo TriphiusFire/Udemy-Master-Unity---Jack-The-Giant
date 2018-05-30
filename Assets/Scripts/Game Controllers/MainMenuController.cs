@@ -2,17 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+    [SerializeField]
+    private Button musicBtn;
+
+    [SerializeField]
+    private Sprite[] musicIcons;
+
+    // Use this for initialization
+    void Start () {
+        CheckToPlayTheMusic();
 	}
+
+    void CheckToPlayTheMusic()
+    {
+        if(GamePreferences.GetMusicState() == 1)
+        {
+            MusicController.instance.PlayMusic(true);
+            musicBtn.image.sprite = musicIcons[1];
+        }
+        else
+        {
+            MusicController.instance.PlayMusic(false);
+            musicBtn.image.sprite = musicIcons[0];
+        }
+    }
 	
 	public void StartGame()
     {
-        SceneManager.LoadScene("Gameplay");
+        GameManager.instance.gameStartedFromMainMenu = true;
+        //SceneManager.LoadScene("Gameplay");
+        SceneFader.instance.LoadLevel("Gameplay");
     }
 
     public void HighScoreMenu()
@@ -32,6 +55,17 @@ public class MainMenuController : MonoBehaviour {
 
     public void MusicButton()
     {
-
+        if(GamePreferences.GetMusicState() == 0)
+        {
+            GamePreferences.SetMusicState(1);
+            MusicController.instance.PlayMusic(true);
+            musicBtn.image.sprite = musicIcons[1];
+        }
+        else if (GamePreferences.GetMusicState() == 1)
+        {
+            GamePreferences.SetMusicState(0);
+            MusicController.instance.PlayMusic(false);
+            musicBtn.image.sprite = musicIcons[0];
+        }
     }
 }

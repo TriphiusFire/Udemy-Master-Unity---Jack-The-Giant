@@ -1,11 +1,11 @@
 fileFormatVersion: 2
 guid: 8d1f050f46ff53e4f8a824c873555e01
-timeCreated: 1527041778
+timeCreated: 1527265860
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: Resume Game Button
-    21300002: Gameplay Elements_1
+    21300002: Life
     21300004: Quit Game Button
     21300006: Coin
     21300008: Cloud 1
@@ -151,7 +151,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Gameplay Elements_1
+      name: Life
       rect:
         serializedVersion: 2
         x: 203
